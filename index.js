@@ -5,12 +5,14 @@ require("dotenv").config();
 const cors = require("cors");
 
 // Imports
+const Database = require("./config/database");
 
 //Middlwares
 app.use(express.json());
 app.use(cors());
 
 // Database Connection
+Database();
 
 // Server Port
 const Port = process.env.PORT || 5000;
