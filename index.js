@@ -6,7 +6,7 @@ const cors = require("cors");
 
 // Imports
 const Database = require("./config/database");
-
+const userRoute = require("./routes/users/userRoute");
 //Middlwares
 app.use(express.json());
 app.use(cors());
@@ -16,7 +16,9 @@ Database();
 
 // Server Port
 const Port = process.env.PORT || 5000;
+
 //Routes
+app.use(userRoute);
 
 //Server listen
 app.listen(Port, () => {
