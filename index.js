@@ -18,7 +18,7 @@ Database();
 const Port = process.env.PORT || 5000;
 
 //Routes
-app.use(userRoute);
+app.use("/api", userRoute);
 
 //Server listen
 app.listen(Port, () => {
