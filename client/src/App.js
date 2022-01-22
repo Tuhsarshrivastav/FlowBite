@@ -1,5 +1,7 @@
+import Routing from "./routes/Routing";
+
 function App() {
-  return <div>react</div>;
+  return <Routing />;
 }
 
 export default App;
