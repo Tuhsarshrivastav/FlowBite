@@ -12,3 +12,7 @@ module.exports.jsonwebtoken = (user) => {
   });
   return token;
 };
+
+module.exports.comparePassword = async (password, dbPassword) => {
+  return await bcrypt.compare(password, dbPassword);
+};
