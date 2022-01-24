@@ -3,11 +3,11 @@ const router = express.Router();
 const {
   registerController,
   loginController,
-} = require("../../controllers/users/usersController");
+} = require("../controllers/usersController");
 const {
   registerValidations,
   loginValidations,
-} = require("../../validations/userValidation");
+} = require("../validations/userValidation");
 
 router.post("/register", registerValidations, registerController);
 router.post("/login", loginValidations, loginController);
