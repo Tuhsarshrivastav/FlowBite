@@ -1,7 +1,8 @@
 import React from "react";
+import SideBar from "../../components/Sidebar";
 
 const Products = () => {
-  return <div>product lists</div>;
+  return <SideBar />;
 };
 
 export default Products;
