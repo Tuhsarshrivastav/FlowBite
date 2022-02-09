@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-const SideBar = () => {
+const SideBar = ({side,closeSidebar}) => {
   return (
-    <div className="fixed top-0 left-0 w-64 h-screen bg-gray-800">
+    <div className={`fixed top-0 ${side} sm:left-0 w-64 h-screen bg-gray-800 z-10 transition-all`}>
+      <i onClick={closeSidebar} className="bi bi-x-lg  absolute top-4 right-4 sm:hidden block cursor-pointer text-lg "></i>
       <div className="bg-white p-4">
         <img src="/logo.svg" alt="logo" />
       </div>
