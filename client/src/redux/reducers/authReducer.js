@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-const adminStorage = localStorage.getItem("admin-token");
 import jwtDecode from "jwt-decode";
+const adminStorage = localStorage.getItem("admin-token");
 
 function verifyToken() {
   if (adminStorage) {
@@ -24,7 +24,11 @@ const authReducer = createSlice({
     setAdminToken: (state, action) => {
       state.adminToken = action.payload;
     },
+    logout: (state) => {
+      localStorage.removeItem("admin-token");
+      state.adminToken = null;
+    },
   },
 });
-export const { setAdminToken } = authReducer.actions;
+export const { setAdminToken,logout } = authReducer.actions;
 export default authReducer.reducer;

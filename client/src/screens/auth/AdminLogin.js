@@ -13,7 +13,6 @@ const AdminLogin = () => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const [login, response] = useAuthLoginMutation();
-  console.log("response", response);
   const errors = response?.error?.data?.errors
     ? response?.error?.data?.errors
     : [];
