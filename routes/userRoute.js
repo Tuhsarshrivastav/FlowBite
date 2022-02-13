@@ -11,6 +11,7 @@ const {
   loginValidations,
 } = require("../validations/userValidation");
 
+// routes 
 router.post("/register", registerValidations, registerController);
 router.post("/login", loginValidations, loginController);
 module.exports = router;
