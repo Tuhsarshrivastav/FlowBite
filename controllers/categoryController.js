@@ -18,6 +18,14 @@ class Category {
       return res.status(401).json({ errors: errors.array() });
     }
   }
+  async fatch(req, res) {
+    try {
+      const category = await CategoryModel.find({});
+      return res.status(200).json({ status: true, category });
+    } catch (error) {
+      return res.status(401).json({ message: "category does not found" });
+    }
+  }
 }
 
 module.exports = new Category();
