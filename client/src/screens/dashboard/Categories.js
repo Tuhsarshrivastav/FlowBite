@@ -1,10 +1,19 @@
 import { Link } from "react-router-dom";
 import ScreenHeader from "../../components/Screenheader";
 import Wrapper from "./Wrapper";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { clearMessage } from "../../redux/reducers/globalReducer";
+import { useEffect } from "react";
 const Categories = () => {
+  const dispatch = useDispatch();
   const { success } = useSelector((state) => state.globalReducer);
-  console.log(success);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearMessage());
+    };
+  }, []);
+
   return (
     <Wrapper>
       <ScreenHeader>
