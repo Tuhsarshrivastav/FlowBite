@@ -18,7 +18,7 @@ const CreateCategories = () => {
     if (data?.isSuccess) {
       navigate("/dashboard/categories");
     }
-  }, [data?.isSuccess]);
+  }, [data?.isSuccess,navigate]);
   return (
     <Wrapper>
       <Screenheader>
