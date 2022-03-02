@@ -21,7 +21,7 @@ const CreateCategories = () => {
       dispatch(setSuccess(data?.data?.message))
       navigate("/dashboard/categories");
     }
-  }, [data?.isSuccess,navigate]);
+  }, [data?.isSuccess,navigate,dispatch,data?.data?.message]);
   return (
     <Wrapper>
       <Screenheader>
