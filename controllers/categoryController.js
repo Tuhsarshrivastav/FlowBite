@@ -8,7 +8,9 @@ class Category {
       const exist = await CategoryModel.findOne({ name });
       if (!exist) {
         await CategoryModel.create({ name });
-        return res.status(201).json({ message: "Your category has created successfully!" });
+        return res
+          .status(201)
+          .json({ message: "Your category has created successfully!" });
       } else {
         return res
           .status(401)
@@ -18,12 +20,19 @@ class Category {
       return res.status(401).json({ errors: errors.array() });
     }
   }
-  async fatch(req, res) {
+  async categories(req, res) {
+    const page = req.params.page;
+    const perPage = 3;
+    const skip = (page - 1) * perPage;
     try {
-      const category = await CategoryModel.find({});
-      return res.status(200).json({ status: true, category });
+      const count = await CategoryModel.find({}).countDocuments();
+      const response = await CategoryModel.find({})
+        .skip(skip)
+        .limit(perPage)
+        .sort({ updatedAt: -1 });
+      return res.status(200).json({ categories: response, perPage, count });
     } catch (error) {
-      return res.status(401).json({ message: "category does not found" });
+      console.log(error.message);
     }
   }
 }
