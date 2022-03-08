@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ScreenHeader from "../../components/Screenheader";
 import Wrapper from "./Wrapper";
 import { useSelector, useDispatch } from "react-redux";
 import { clearMessage } from "../../redux/reducers/globalReducer";
 import { useEffect } from "react";
+import { useGetQuery } from "../../redux/Services/categoryService";
+
 const Categories = () => {
   const dispatch = useDispatch();
+  const { page } = useParams();
   const { success } = useSelector((state) => state.globalReducer);
-
+  const { data = [], isLoading } = useGetQuery(page ? page : 1);
+  console.log("your data", data);
   useEffect(() => {
     return () => {
       dispatch(clearMessage());
@@ -22,10 +26,10 @@ const Categories = () => {
         </Link>
       </ScreenHeader>
       {success && <div className="alert-success">{success}</div>}
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vel molestiae
-      tempora voluptatibus rem neque optio, deserunt, autem, est distinctio
-      assumenda ratione cum esse at. Vero inventore officia perspiciatis
-      quisquam consequatur!
+      {isLoading && <div className="alert-success">Loading...</div>}
+      {/* {data.map((category)=>(
+        console.log(category)
+      ))} */}
     </Wrapper>
   );
 };
