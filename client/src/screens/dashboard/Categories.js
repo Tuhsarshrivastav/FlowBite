@@ -5,13 +5,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { clearMessage } from "../../redux/reducers/globalReducer";
 import { useEffect } from "react";
 import { useGetQuery } from "../../redux/Services/categoryService";
+import Spinner from "../../components/Spinner";
 
 const Categories = () => {
   const dispatch = useDispatch();
   const { page } = useParams();
   const { success } = useSelector((state) => state.globalReducer);
   const { data = [], isLoading } = useGetQuery(page ? page : 1);
-  console.log("your data", data);
   useEffect(() => {
     return () => {
       dispatch(clearMessage());
@@ -26,10 +26,44 @@ const Categories = () => {
         </Link>
       </ScreenHeader>
       {success && <div className="alert-success">{success}</div>}
-      {isLoading && <div className="alert-success">Loading...</div>}
-      {/* {data.map((category)=>(
-        console.log(category)
-      ))} */}
+      {!isLoading ? (
+        data?.categories?.length > 0 && (
+          <div>
+            <table className="w-full bg-gray-900 rounded-md">
+              <thead>
+                <tr className="border-b border-gray-800 text-left">
+                  <th className="p-3 uppercase text-sm font-medium text-gray-500">
+                    name
+                  </th>
+                  <th className="p-3 uppercase text-sm font-medium text-gray-500">
+                    edit
+                  </th>
+                  <th className="p-3 uppercase text-sm font-medium text-gray-500">
+                    delete
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {data?.categories?.map((category) => (
+                  <tr key={category._id} className="odd:bg-gray-800">
+                    <td className="p-3 capitalize text-sm font-normal text-gray-400">
+                      {category.name}
+                    </td>
+                    <td className="p-3 capitalize text-sm font-normal text-gray-400">
+                      <button>edit</button>
+                    </td>
+                    <td className="p-3 capitalize text-sm font-normal text-gray-400">
+                      <button>delete</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )
+      ) : (
+        <Spinner />
+      )}
     </Wrapper>
   );
 };
