@@ -57,7 +57,7 @@ module.exports.loginController = async (req, res) => {
           if (user.admin) {
             return res.status(201).json({ token, admin: true });
           } else {
-            return res.status(201).json({ token, admin: true });
+            return res.status(201).json({ token, admin: false });
           }
         } else {
           return res
