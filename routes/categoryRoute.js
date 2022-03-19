@@ -14,4 +14,9 @@ router.get(
   Authorization.authorized,
   categoryController.categories
 );
+router.get(
+  "/fatch-category/:id",
+  // Authorization.authorized,
+  categoryController.fatchCategory
+);
 module.exports = router;

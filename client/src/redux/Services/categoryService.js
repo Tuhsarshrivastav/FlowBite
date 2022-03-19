@@ -31,11 +31,19 @@ const categoryService = createApi({
             method: "GET",
           };
         },
-        providesTags:['categories'],
+        providesTags: ["categories"],
       }),
-    
+      fetchCategory: builder.query({
+        query: (id) => {
+          return {
+            url: `/fatch-category/${id}`,
+            method: "GET",
+          };
+        },
+      }),
     };
   },
 });
-export const { useCreateMutation, useGetQuery } = categoryService;
+export const { useCreateMutation, useGetQuery, useFetchCategoryQuery } =
+  categoryService;
 export default categoryService;
