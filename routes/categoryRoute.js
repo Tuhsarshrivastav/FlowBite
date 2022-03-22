@@ -16,7 +16,12 @@ router.get(
 );
 router.get(
   "/fatch-category/:id",
-  // Authorization.authorized,
+  Authorization.authorized,
   categoryController.fatchCategory
+);
+router.put(
+  "/update-category/:id",
+  [categoryValidation, Authorization.authorized],
+  categoryController.updateCategory
 );
 module.exports = router;

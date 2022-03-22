@@ -24,6 +24,16 @@ const categoryService = createApi({
         },
         invalidatesTags: ["categories"],
       }),
+      updateCategory: builder.mutation({
+        query: (data) => {
+          return {
+            url: `update-category/${data.id}`,
+            method: "PUT",
+            body: { name: data.name },
+          };
+        },
+        invalidatesTags: ["categories"],
+      }),
       get: builder.query({
         query: (page) => {
           return {
@@ -44,6 +54,10 @@ const categoryService = createApi({
     };
   },
 });
-export const { useCreateMutation, useGetQuery, useFetchCategoryQuery } =
-  categoryService;
+export const {
+  useCreateMutation,
+  useGetQuery,
+  useFetchCategoryQuery,
+  useUpdateCategoryMutation,
+} = categoryService;
 export default categoryService;
