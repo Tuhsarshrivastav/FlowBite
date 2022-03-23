@@ -29,7 +29,7 @@ module.exports.registerController = async (req, res) => {
       } else {
         // email already taken
         return res
-          .status(401)
+          .status(400)
           .json({ errors: [{ msg: `${email} is already taken` }] });
       }
     } catch (error) {
@@ -61,12 +61,12 @@ module.exports.loginController = async (req, res) => {
           }
         } else {
           return res
-            .status(401)
+            .status(400)
             .json({ errors: [{ msg: "password not match" }] });
         }
       } else {
         return res
-          .status(401)
+          .status(400)
           .json({ errors: [{ msg: `${email} is not found` }] });
       }
     } catch (error) {
@@ -74,6 +74,6 @@ module.exports.loginController = async (req, res) => {
     }
   } else {
     // validations failed
-    return res.status(401).json({ errors: errors.array() });
+    return res.status(400).json({ errors: errors.array() });
   }
 };
