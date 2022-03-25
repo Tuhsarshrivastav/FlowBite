@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const CategoryModel = require("../models/categorysModel");
+
 class Category {
   async create(req, res) {
     const errors = validationResult(req);
@@ -20,6 +21,7 @@ class Category {
       return res.status(401).json({ errors: errors.array() });
     }
   }
+
   async categories(req, res) {
     const page = req.params.page;
     const perPage = 3;
@@ -35,6 +37,7 @@ class Category {
       console.log(error.message);
     }
   }
+
   async fatchCategory(req, res) {
     const { id } = req.params;
     try {
@@ -44,6 +47,7 @@ class Category {
       console.log(error.message);
     }
   }
+
   async updateCategory(req, res) {
     const { id } = req.params;
     const { name } = req.body;
@@ -64,6 +68,7 @@ class Category {
       return res.status(401).json({ errors: errors.array() });
     }
   }
+
   async deleteCategory(req, res) {
     const { id } = req.params;
     try {
