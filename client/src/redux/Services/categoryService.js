@@ -60,6 +60,14 @@ const categoryService = createApi({
           };
         },
       }),
+      allCategories: builder.query({
+        query: () => {
+          return {
+            url: "allcategories",
+            method: "GET",
+          };
+        },
+      }),
     };
   },
 });
@@ -69,5 +77,6 @@ export const {
   useFetchCategoryQuery,
   useUpdateCategoryMutation,
   useDeleteCategoryMutation,
+  useAllCategoriesQuery,
 } = categoryService;
 export default categoryService;
