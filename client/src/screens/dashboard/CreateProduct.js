@@ -18,6 +18,9 @@ const CreateProduct = () => {
     stock: 0,
     category: "",
     colors: [],
+    image1: "",
+    image2: "",
+    image3: "",
   });
   const [sizes] = useState([
     { name: "xsm" },
@@ -32,6 +35,22 @@ const CreateProduct = () => {
     { name: "5 years" },
   ]);
   const [sizeList, setSizeList] = useState([]);
+  const [preview, setPreview] = useState({
+    image1: "",
+    image2: "",
+    image3: "",
+  });
+
+  const imageHandle = (e) => {
+    if (e.target.files.length !== 0) {
+      setState({ ...state, [e.target.name]: e.target.files[0] });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview({ ...preview, [e.target.name]: reader.result });
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
+  };
   const handleInput = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
@@ -178,6 +197,7 @@ const CreateProduct = () => {
                 name="image1"
                 id="image1"
                 className="input-file"
+                onChange={imageHandle}
               />
             </div>
 
@@ -190,6 +210,7 @@ const CreateProduct = () => {
                 name="image2"
                 id="image2"
                 className="input-file"
+                onChange={imageHandle}
               />
             </div>
 
@@ -202,6 +223,7 @@ const CreateProduct = () => {
                 name="image3"
                 id="image3"
                 className="input-file"
+                onChange={imageHandle}
               />
             </div>
           </div>
