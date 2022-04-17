@@ -8,6 +8,7 @@ import { useAllCategoriesQuery } from "../../redux/Services/categoryService";
 import Spinner from "../../components/Spinner";
 import Colors from "../../components/Colors";
 import SizesList from "../../components/SizesList";
+import ImagesPreview from "../../components/ImagesPreview";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
@@ -231,6 +232,9 @@ const CreateProduct = () => {
         <div className="w-full xl:w-4/12 p-3">
           <Colors colors={state.colors} deleteColor={deleteColor} />
           <SizesList list={sizeList} deleteSize={deleteSize} />
+          <ImagesPreview url={preview.image1} heading="image 1" />
+          <ImagesPreview url={preview.image2} heading="image 2" />
+          <ImagesPreview url={preview.image3} heading="image 3" />
         </div>
       </div>
     </Wrapper>
