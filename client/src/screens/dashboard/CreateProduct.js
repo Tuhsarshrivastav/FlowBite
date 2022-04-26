@@ -4,6 +4,8 @@ import { TwitterPicker } from "react-color";
 import { v4 as uuidv4 } from "uuid";
 import ScreenHeader from "../../components/Screenheader";
 import Wrapper from "./Wrapper";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 import { useAllCategoriesQuery } from "../../redux/Services/categoryService";
 import Spinner from "../../components/Spinner";
 import Colors from "../../components/Colors";
@@ -12,6 +14,8 @@ import ImagesPreview from "../../components/ImagesPreview";
 
 const CreateProduct = () => {
   const { data = [], isFetching } = useAllCategoriesQuery();
+  const [value, setValue] = useState("");
+  console.log(`Rich tex editor: ${value}`);
   const [state, setState] = useState({
     title: "",
     price: 0,
@@ -225,6 +229,25 @@ const CreateProduct = () => {
                 id="image3"
                 className="input-file"
                 onChange={imageHandle}
+              />
+            </div>
+            <div className="w-full p-3">
+              <label htmlFor="description" className="label">
+                Description
+              </label>
+              <ReactQuill
+                theme="snow"
+                id="description"
+                value={value}
+                onChange={setValue}
+                placeholder="Description..."
+              />
+            </div>
+            <div className="w-full p-3">
+              <input
+                type="submit"
+                value="save product"
+                className="btn btn-indigo"
               />
             </div>
           </div>
